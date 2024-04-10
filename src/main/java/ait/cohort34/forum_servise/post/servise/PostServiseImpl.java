@@ -88,11 +88,15 @@ public class PostServiseImpl implements PostServise{
 
     @Override
     public Iterable<PostDto> findPostByTags(Set<String> tags) {
-        return null;
+        return postRepository.findByTagsInIgnoreCase(tags)
+                .map(p -> modelMapper.map(p, PostDto.class))
+                .toList();
     }
 
     @Override
     public Iterable<PostDto> findPostByPeriod(DatePeriodDto datePeriodDto) {
-        return null;
+        return postRepository.findByDateCreatedBetween(datePeriodDto.getDateFrom(), datePeriodDto.getDateTo())
+                .map(p -> modelMapper.map(p, PostDto.class))
+                .toList();
     }
 }
