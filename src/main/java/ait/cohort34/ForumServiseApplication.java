@@ -1,4 +1,4 @@
-package ait.cohort34.forum_servise;
+package ait.cohort34;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
