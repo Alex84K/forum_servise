@@ -32,17 +32,21 @@ public class UserAccountServisceImpl implements UserAccountService{
 
     @Override
     public UserDto getUser(String login) {
-        UserAccount user = userAccountRepository.getUserAccountByLoginIgnoreCase(login).orElseThrow(AccountNotFoundExeption::new);
+        UserAccount user = userAccountRepository.findById(login).orElseThrow(PostNotFoundExeption::new);
         return  modelMapper.map(user, UserDto.class);
     }
 
     @Override
     public UserDto removeUser(String login) {
-        return null;
+        UserAccount user = userAccountRepository.findById(login).orElseThrow(PostNotFoundExeption::new);
+        userAccountRepository.delete(user);
+        return modelMapper.map(user, UserDto.class);
     }
 
     @Override
     public UserDto updateUser(String login, UserEditDto userEditDto) {
+        UserAccount user = userAccountRepository.findById(login).orElseThrow(PostNotFoundExeption::new);
+
         return null;
     }
 
